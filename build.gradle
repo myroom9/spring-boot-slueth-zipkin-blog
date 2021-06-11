@@ -1,0 +1,74 @@
+
+buildscript {
+    ext {
+        spring = "2.3.0.RELEASE"
+        boot = "org.springframework.boot"
+        cloud = "org.springframework.cloud"
+        lombok = "org.projectlombok:lombok"
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("$boot:spring-boot-gradle-plugin:$spring")
+    }
+}
+
+allprojects {
+    group = "com.example.sszb"
+    version = "1.0.0"
+}
+
+subprojects {
+
+    apply plugin: "java"
+    apply plugin: boot
+    apply plugin: "io.spring.dependency-management"
+    apply plugin: "idea"
+
+    repositories {
+        mavenCentral()
+    }
+
+    configurations {
+        developmentOnly
+        runtimeClasspath {
+            extendsFrom developmentOnly
+        }
+    }
+
+    dependencies {
+        implementation "$boot:spring-boot-starter-web"
+        // https://github.com/spring-cloud/spring-cloud-sleuth/issues/1775
+        // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-sleuth
+        implementation group: "$cloud", name: 'spring-cloud-starter-sleuth', version: '2.2.3.RELEASE'
+        // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-zipkin
+        implementation group: "$cloud", name: 'spring-cloud-starter-zipkin', version: '2.2.3.RELEASE'
+        // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
+        implementation group: "$cloud", name: 'spring-cloud-starter-openfeign', version: '2.2.3.RELEASE'
+
+
+        compileOnly lombok
+        testCompileOnly lombok
+        annotationProcessor lombok
+        testAnnotationProcessor lombok
+
+        testImplementation "$boot:spring-boot-starter-test"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+}
+
+["service"].each {
+    def subProjectDir = new File(projectDir, it)
+    subProjectDir.eachDir {dir->
+        def projectName = ":${it}-${dir.name}"
+        project(projectName){
+        }
+    }
+}
+
+help.enabled(false)
