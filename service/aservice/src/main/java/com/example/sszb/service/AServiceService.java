@@ -12,6 +12,7 @@ public class AServiceService {
     private final TestFeign testFeign;
 
     public void testSleuth() {
+        log.info("test2");
         testFeign.sleuthTest();
     }
 }

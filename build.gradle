@@ -39,14 +39,9 @@ subprojects {
 
     dependencies {
         implementation "$boot:spring-boot-starter-web"
-        // https://github.com/spring-cloud/spring-cloud-sleuth/issues/1775
-        // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-sleuth
         implementation group: "$cloud", name: 'spring-cloud-starter-sleuth', version: '2.2.3.RELEASE'
-        // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-zipkin
         implementation group: "$cloud", name: 'spring-cloud-starter-zipkin', version: '2.2.3.RELEASE'
-        // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
         implementation group: "$cloud", name: 'spring-cloud-starter-openfeign', version: '2.2.3.RELEASE'
-
 
         compileOnly lombok
         testCompileOnly lombok

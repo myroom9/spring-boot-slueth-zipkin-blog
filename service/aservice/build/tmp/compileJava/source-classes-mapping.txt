@@ -1,8 +1,8 @@
 com/example/sszb/AServiceApplication.java
  com.example.sszb.AServiceApplication
+com/example/sszb/api/TestFeign.java
+ com.example.sszb.api.TestFeign
 com/example/sszb/controller/AServiceController.java
  com.example.sszb.controller.AServiceController
 com/example/sszb/service/AServiceService.java
  com.example.sszb.service.AServiceService
-com/example/sszb/api/TestFeign.java
- com.example.sszb.api.TestFeign
