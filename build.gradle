@@ -43,6 +43,12 @@ subprojects {
         implementation group: "$cloud", name: 'spring-cloud-starter-zipkin', version: '2.2.3.RELEASE'
         implementation group: "$cloud", name: 'spring-cloud-starter-openfeign', version: '2.2.3.RELEASE'
 
+        implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '6.3'
+        implementation group: 'ch.qos.logback.contrib', name: 'logback-json-classic', version: '0.1.5'
+        implementation group: 'ch.qos.logback.contrib', name: 'logback-jackson', version: '0.1.5'
+        implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.4'
+        implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.10.1'
+
         compileOnly lombok
         testCompileOnly lombok
         annotationProcessor lombok
